@@ -1,0 +1,17 @@
+# Fichier dockerfile du server MariaDB
+FROM mariadb:latest
+
+# Spécifie les veriables d'environnement pour MariaDB
+ENV MARIADB_ROOT_PASSWORD mypass54321
+ENV MARIADB_DATABASE Analyse_bibliotheque
+
+# Copie les fichier sql à la racine du contener
+COPY MARIADB/create-database.sql
+COPY MARIADB/insert-data.sql
+# mariadb -u root -p Analyse_bibliotheque < /create-database.sql
+# mariadb -u root -p Analyse_bibliotheque < /insert-data.sql
+
+# Expose sur le port 3306
+EXPOSE 3306
+
+CMD['mariadb']
